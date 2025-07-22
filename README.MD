@@ -1,0 +1,1 @@
+run on terminal `docker-compose up --build`
