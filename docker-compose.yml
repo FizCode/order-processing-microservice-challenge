@@ -11,7 +11,6 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -41,7 +40,8 @@ services:
       rabbitmq:
         condition: service_started
     environment:
-      MYSQL_DSN: "appuser:apppass@tcp(mysql:3306)/orders"
+      MYSQL_DSN_NO_DB: "appuser:apppass@tcp(mysql:3306)/"
+      MYSQL_DSN: "appuser:apppass@tcp(mysql:3306)/orders?parseTime=true"
       RABBITMQ_URL: "amqp://guest:guest@rabbitmq:5672/"
 
 volumes:

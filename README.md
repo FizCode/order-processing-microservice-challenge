@@ -26,7 +26,6 @@ order-processing-microservice-challenge/
 ├── Dockerfile
 ├── go.mod
 ├── go.sum
-├── init.sql
 ├── main.go
 ├── README.md
 ```

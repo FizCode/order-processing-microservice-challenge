@@ -31,3 +31,28 @@ func (p *Publisher) PublishOrder(order *model.Order) error {
 		},
 	)
 }
+
+func (p *Publisher) PublishOrderDeleted(orderID int) error {
+	payload := map[string]interface{}{
+		"type": "deleted",
+		"id":   orderID,
+	}
+
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return err
+	}
+
+	ctx := context.Background()
+	return p.Channel.PublishWithContext(
+		ctx,
+		"",
+		p.Queue,
+		false,
+		false,
+		amqp.Publishing{
+			ContentType: "application/json",
+			Body:        body,
+		},
+	)
+}
