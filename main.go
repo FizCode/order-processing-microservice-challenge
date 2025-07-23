@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	controller "fizcode.dev/order-processing-microservice-challenge/controler"
+	controller "fizcode.dev/order-processing-microservice-challenge/controller"
 	"fizcode.dev/order-processing-microservice-challenge/mq"
 	"fizcode.dev/order-processing-microservice-challenge/repository"
 	"fizcode.dev/order-processing-microservice-challenge/service"

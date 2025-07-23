@@ -1,6 +1,7 @@
 package mq
 
 import (
+	"context"
 	"encoding/json"
 
 	"fizcode.dev/order-processing-microservice-challenge/model"
@@ -14,10 +15,12 @@ type Publisher struct {
 
 func (p *Publisher) PublishOrder(order *model.Order) error {
 	body, err := json.Marshal(order)
+	ctx := context.Background()
 	if err != nil {
 		return err
 	}
-	return p.Channel.Publish(
+	return p.Channel.PublishWithContext(
+		ctx,
 		"",
 		p.Queue,
 		false,
